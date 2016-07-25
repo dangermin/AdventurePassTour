@@ -1,0 +1,98 @@
+<ion-view view-title="Membership Sign Up" hide-back-button="false" can-swipe-back="true">
+    <ion-content class="padding" id="contentColor">
+        <div id="freeCard" class="card">
+            <div class="item item-divider text-left">
+                <p id="memberApplyPrice">Free</p>
+            </div>
+            <div id="membershipSignUpFree" ng-click="chooseFree=!chooseFree" class="item item-text-wrap text-center">
+                Free Membership
+            </div>
+            <div class="item item-text-wrap text-left">
+                <h4>Register for instant access and Adventure Pass updates.</h4>
+            </div>
+            <div class="item item-divider text-right">
+                <button id="signUpButton" class="button button-clear button-primary" ng-click="profileModal.show()">Sign Up!</button>
+            </div>
+        </div>
+        <hr>
+        <h4 class="text-center">Preview our membership options:</h4>
+        <div id="clubCard" class="card">
+            <div ng-show="chooseClub" class="item item-divider text-left">
+                <p id="memberApplyPrice">$9.99/mo.</p>
+            </div>
+            <div id="membershipSignUpClub" ng-click="chooseClub=!chooseClub; chooseSport=false; choosePremium=false" class="item item-text-wrap text-center">
+                Club Membership
+            </div>
+            <div ng-show="chooseClub" class="item item-text-wrap text-left">
+                <h4>10% discount at all Partner locations</h4>
+                <h4>Free T-shirt</h4>
+            </div>
+            <!--   <div ng-show="chooseClub" class="item item-divider text-right">
+                        <button id="signUpButton" class="button button-clear button-primary" ng-click="goToPayment('club')">Sign Up!</button>
+                    </div> -->
+            <div ng-show="chooseClub" class="item item-divider text-right">
+                <button id="signUpButton" class="button button-clear button-primary" ng-click="comingSoon()">Sign Up!</button>
+            </div>
+        </div>
+        <div id="sportCard" style="background-color:#26628A" class="card">
+            <div ng-show="chooseSport" class="item item-divider">
+                <p id="memberApplyPrice">$14.99/mo.</p>
+            </div>
+            <div id="membershipSignUpSport" ng-click="chooseSport=!chooseSport; chooseClub=false; choosePremium=false" class="item item-text-wrap text-center">
+                Sport Membership
+            </div>
+            <div ng-show="chooseSport" class="item item-text-wrap text-left">
+                <h4>15% discount at all Partner locations</h4>
+                <h4>Free T-shirt</h4>
+            </div>
+            <div ng-show="chooseSport" class="item item-divider text-right">
+                <!-- <button id="signUpButton" class="button button-clear" ng-click="goToPayment('sport')">Sign Up!</button> -->
+                <button id="signUpButton" class="button button-clear" ng-click="comingSoon()">Sign Up!</button>
+            </div>
+        </div>
+        <div id="premierCard" class="card">
+            <div ng-show="choosePremium" class="item item-divider">
+                <p id="memberApplyPrice">$19.99/mo.</p>
+            </div>
+            <div id="membershipSignUpPremium" ng-click="choosePremium=!choosePremium; chooseSport=false; chooseClub=false" class="item item-text-wrap text-center">
+                Premier Membership
+            </div>
+            <div ng-show="choosePremium" class="item item-text-wrap text-left">
+                <h4>15% discount at all Partner locations</h4>
+                <h4>Bring a new friend every time for free!</h4>
+                <h4>Free T-shirt</h4>
+            </div>
+            <div ng-show="choosePremium" class="item item-divider text-right">
+                <!-- <button id="signUpButton" class="button button-clear button-primary" ng-click="goToPayment('premium')">Sign Up!</button> -->
+                <button id="signUpButton" class="button button-clear button-primary" ng-click="comingSoon()">Sign Up!</button>
+            </div>
+        </div>
+    </ion-content>
+    <script id="templates/profileModal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar">
+                <h1 class="title">Contact Information</h1>
+                <button class="button button-clear" ng-click="profileModal.hide()">Cancel</button>
+            </ion-header-bar>
+            <ion-content class="padding" id="contentColor">
+                <form name="profileInfoForm">
+                    <div class="card" ng-hide="part2">
+                        <label class="item item-input item-stacked-label text-left">
+                            <span class="input-label ">  First Name:</span>
+                            <input required type="text" ng-model="data.first">
+                        </label>
+                        <label class="item item-input item-stacked-label text-left ">
+                            <span class="input-label">  Last Name:</span>
+                            <input required type="text" ng-model="data.last">
+                        </label>
+                        <label class="item item-input item-stacked-label text-left">
+                            <span class="input-label ">  Email Address:</span>
+                            <input required type="text" ng-model="data.email">
+                        </label>
+                        <button class="button button-block" style="height:35px" ng-click="signUp()">continue</button>
+                    </div>
+                </form>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>

@@ -1,0 +1,34 @@
+<ion-view title='<img height=40px width=50px src="app/img/icon.png" alt="Logo" class="Logo">' hide-back-button="true" can-swipe-back="false">
+    <ion-content class="padding login-page" scroll="false">
+        <div class="login-div">
+            <img id="loginLogo" src="app/img/Logo.png" alt="Logo" class="Logo">
+            <!--             <form ng-show="loggingIn" name="loginForm">
+                <div class="list">
+                    <label id="loginInput" class="item item-input item-stacked-label text-left">
+                        <span id="loginContainer" class="input-label ">  Membership Number:</span>
+                        <input required type="text" placeholder="x-xxx" ng-model="data.email">
+                    </label>
+                    <label id="loginInput" class="item item-input item-stacked-label text-left ">
+                        <span id="loginContainer" class="input-label">  Password:</span>
+                        <input required type="password" placeholder="  Password" ng-model="data.password">
+                    </label>
+                    <div class="row">
+                        <button id="loginButton2" class="button button-block col col-49" ng-click="login()">Login</button>
+                        <button id="backButton" class="button button-block col col-49" ng-click="loggingIn=false">Back</button>
+                    </div>
+                </div>
+            </form> -->
+            <!--             <div class="centerDiv">
+                <button class="button button-positive buttonFullwidth" ng-click="facebookLogin()">Facebook</button>
+                <button class="button button-assertive buttonFullwidth" ng-click="googleLogin()">Google+</button>
+            </div> -->
+            <!-- <div class="centerDiv">
+      <button class="button button-energized buttonFullwidth" ng-click="instagramLogin()">Instagram</button>
+      <button class="button button-calm buttonFullwidth" ng-click="twitterLogin()">Twitter</button>
+    </div> -->
+        </div>
+        <div id="loginButtons" class="row">
+            <button id="applyButton" ng-hide="loggingIn" class="button button-block col col-49" ui-sref='register'>Start your adventure</button>
+        </div>
+    </ion-content>
+</ion-view>

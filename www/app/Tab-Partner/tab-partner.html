@@ -1,0 +1,90 @@
+<ion-view title='<img height=40px width=50px src="app/img/icon.png" alt="Logo" class="Logo">'>
+    <ion-content id="superUserContent" scroll="false">
+        <h2 id="partnerWelcomeMessage" ng-show="welcomeMessageShowing" class="text-center">Welcome, Mr. Woodhams</h2>
+        <div id="partnerContent" ng-hide="welcomeMessageShowing" class="list text-center">
+            <h3>{{currentDate}}</h3>
+            <br>
+            <div class="text-center">
+                <h2 id="partnerTitle">Partners: {{partnerCount}}</h2>
+                <a id="partnerAdd" class="button button-clear button-positive" ng-click="modal.show()">add</a>
+                <form name="name" class="form item item-input" ng-submit="searchPartners()">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input ng-model="partnerSearch.email" type="text" placeholder="Search Partners" />
+                </form>
+            </div>
+            <br>
+            <div class="text-center">
+                <h2>Members: {{userCount}}</h2>
+                <form name="name" class="form item item-input" ng-submit="searchUsers()">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input ng-model="userSearch.email" type="text" placeholder="Search Members" />
+                </form>
+            </div>
+        </div>
+        <div class="card" ng-show="partnerSearchResults">
+            <h5>{{thisShop.ShopName}}</h5>
+            <h6>{{thisShop.Hours}}</h6>
+            <h6>{{thisShop.ContactName}}</h6>
+            <h6>{{thisShop.PhoneNumber}}</h6>
+            <h6>{{thisShop.WebAddress}}</h6>
+            <h6>{{thisShop.Address}}</h6>
+            <h6>{{thisShop.Pending}}</h6>
+            <a class="button button-block button-danger" ng-click="deletePartner(thisShop.Address)">delete partner</a>
+        </div>
+        <div class="card" ng-show="userSearchResults">
+            <h4>Member Name: {{thisUser.First}} {{thisUser.Last}}</h4>
+            <h5>Email: {{thisUser.Email}}</h5>
+            <h5>Tier: {{thisUser.MembershipTier.Tier}}</h5>
+            <h5>Benefits: {{thisUser.MembershipTier.Benefit}}</h5>
+            <a class="button button-block button-danger" ng-click="deleteMember()">delete member</a>
+        </div>
+    </ion-content>
+    <!-- New Partner Modal -->
+    <script id="templates/modal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">New Partner</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+            </ion-header-bar>
+            <ion-content class="padding">
+                <div class="list">
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Shop Name</span>
+                        <input type="text" ng-model="ShopName.value" placeholder="Rocky's Surf Shop...">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Email Address:</span>
+                        <input type="text" ng-model="EmailAddress.value" placeholder="bob@surf.com...">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Shop Location</span>
+                        <ion-google-place ng-click="modal.hide()" placeholder="Enter an address, Apt# and ZIP" ng-model="Location.value" />
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Contact Name</span>
+                        <input type="text" ng-model="ContactName.value" placeholder="Bob...">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Phone Number</span>
+                        <input type="tel" ng-model="Phone.value" placeholder="555-555-5555">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Web Address</span>
+                        <input type="text" ng-model="WebAddress.value" placeholder="www.bob.com">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Opening Hour</span>
+                        <input type="text" ng-model="Open.value" placeholder="9am">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Closing Hour</span>
+                        <input type="text" ng-model="Close.value" placeholder="5pm">
+                    </label>
+                </div>
+                <button class="button button-block button-positive" ng-click="createPartner()">add partner</button>
+                <!--                 <button ng-show="partner.value" class="button button-block button-positive" ng-click="updatePartner()">Update</button>
+ -->
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>
