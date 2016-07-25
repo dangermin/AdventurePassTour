@@ -27,6 +27,16 @@ angular.module('starter')
 
 
         tourUser.save();
+
+        Parse.Cloud.run('requestMail', $scope.data, {
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+
         $scope.profileModal.hide();
 
         Parse.User.logIn("D@d.com", "d123", {
