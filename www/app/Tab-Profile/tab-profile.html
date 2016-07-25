@@ -1,26 +1,25 @@
 <ion-view title='<img height=40px width=50px src="app/img/icon.png" alt="Logo" class="Logo">'>
     <ion-content scroll="false" id="contentColor">
-            <div class="card">
-                <div id="profileCard" class="item item-thumbnail-left">
-                    <img src="app/img/surf.gif">
-                    <h2><span ng-bind="profile.FirstName"></span> <span ng-bind="profile.LastName"></span> <ionic-ratings style="float: right" ratingsobj='{rating: profile.Rating, readOnly: true}' style="float: left"></ionic-ratings></h2>
-                    <p><span ng-bind="profile.City"></span>, <span ng-bind="profile.State"></span></p>
-                    <p><b><span ng-bind="benefits.Tier"></span></b> Member since <span ng-bind="profile.Month"></span> <span ng-bind="profile.Year"></span></p>
-                   
-                </div>
-                <div id="profileCard">
-                    <div class="item item-divider">Contact Information:</div>
-                    <div class="item">Email: <span ng-bind="profile.Email"></span></div>
-                    <div class="item">Phone: <span ng-bind="profile.Phone"></span></div>
-                </div>
-                <div id="tierCard">
-                    <div class="item item-divider">Member Benefits</div>
-                    <h6 id="benefitCard"><span ng-bind="benefits.Benefit"> </span></h6>
-                    <!-- <div class="item"></div> -->
-                </div>
-                <!-- <button id="profileUpdate" class="button button-block" ng-click="profileModal.show()">Update Profile</button> -->
+        <div class="card">
+            <div id="profileCard" class="item item-thumbnail-left">
+                <img src="app/img/nomadpro.png">
+                <h2><span ng-bind="profile.FirstName"></span> <span ng-bind="profile.LastName"></span> <ionic-ratings style="float: right" ratingsobj='{rating: profile.Rating, readOnly: true}' style="float: left"></ionic-ratings></h2>
+                <p><span ng-bind="profile.City"></span>, <span ng-bind="profile.State"></span></p>
+                <p><b><span ng-bind="benefits.Tier"></span></b> Member since <span ng-bind="profile.Month"></span> <span ng-bind="profile.Year"></span></p>
             </div>
-            <button id="profileLogout" class="button button-block" ng-click="logout()">Logout</button>
+            <div id="profileCard">
+                <div class="item item-divider">Contact Information:</div>
+                <div class="item">Email: <span ng-bind="profile.Email"></span></div>
+                <div class="item">Phone: <span ng-bind="profile.Phone"></span></div>
+            </div>
+            <div id="tierCard">
+                <div class="item item-divider">Member Benefits</div>
+                <h6 id="benefitCard"><span ng-bind="benefits.Benefit"> </span></h6>
+                <!-- <div class="item"></div> -->
+            </div>
+            <!-- <button id="profileUpdate" class="button button-block" ng-click="profileModal.show()">Update Profile</button> -->
+        </div>
+        <button id="profileLogout" class="button button-block" ng-click="logout()">Logout</button>
     </ion-content>
     <script id="templates/profileModal.html" type="text/ng-template">
         <ion-modal-view id="contentColor">
