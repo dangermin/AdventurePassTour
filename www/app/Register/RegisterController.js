@@ -28,23 +28,22 @@ angular.module('starter')
 
         tourUser.save();
 
-        Parse.Cloud.run('requestMail', $scope.data, {
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
-
-        $scope.profileModal.hide();
 
         Parse.User.logIn("D@d.com", "d123", {
             success: function(user) {
+                $scope.profileModal.hide();
                 $state.go('splash');
+                Parse.Cloud.run('requestMail', $scope.data, {
+                    success: function(data) {
+                        console.log(data);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
             },
             error: function(user, error) {
-                $ionicLoading.hide();
+                $scope.profileModal.hide();
                 $ionicPopup.alert({
                     title: 'Login',
                     template: 'Wrong User or Password'
