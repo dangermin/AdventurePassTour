@@ -112,53 +112,50 @@
                         for (var i in avg) { total += avg[i] / len };
                         $scope.newObj.Rating = Math.round(total);
                         $scope.newObj.Marker = new google.maps.LatLng(location._latitude, location._longitude).toString();
-                        $scope.shops.push($scope.newObj);
 
-                        for (var i = 0; i < $scope.shops.length; i++) {
-                            var shop = $scope.shops[i];
-                            var markerPos = new google.maps.LatLng($scope.shops[i].Location._latitude, $scope.shops[i].Location._longitude);
-                            $scope.MarkerPos = markerPos;
+                        var shop = $scope.newObj;
+                        var markerPos = new google.maps.LatLng($scope.newObj.Location._latitude, $scope.newObj.Location._longitude);
+                        $scope.MarkerPos = markerPos;
 
-                            // Pushing each shop latLng into averageLoc Obj
-                            var lat = $scope.shops[i].Location._latitude;
-                            var lng = $scope.shops[i].Location._longitude;
-                            myLatLng = { lat: lat, lng: lng };
-                            averageLoc.push(myLatLng);
+                        // Pushing each shop latLng into averageLoc Obj
+                        var lat = $scope.newObj.Location._latitude;
+                        var lng = $scope.newObj.Location._longitude;
+                        myLatLng = { lat: lat, lng: lng };
+                        averageLoc.push(myLatLng);
 
-                            shop.Rated = {
-                                rating: shop.Rating,
-                                readOnly: true,
-                            };
+                        shop.Rated = {
+                            rating: shop.Rating,
+                            readOnly: true,
+                        };
 
-                            var marker = new google.maps.Marker({
-                                map: $scope.map,
-                                animation: google.maps.Animation.DROP,
-                                position: markerPos,
-                                // center: $scope.map.setCenter(new google.maps.LatLng(latAvg, lngAvg)),
-                            });
+                        var marker = new google.maps.Marker({
+                            map: $scope.map,
+                            animation: google.maps.Animation.DROP,
+                            position: markerPos,
+                            // center: $scope.map.setCenter(new google.maps.LatLng(latAvg, lngAvg)),
+                        });
 
-                            var infoWindowContent = '<div id="content">' +
-                                '<div style="float:left; width:5%; padding-right:2cm"><img src="app/img/surf.png" width="60" height="40"/></div>' +
-                                '<div style="float:right">' +
-                                '<h5>' + shop.Name + '</h5>' +
-                                '<div>' +
-                                '<h6>' + shop.Numb + '</h6>' +
-                                '<h6>' + shop.Address + '</h6>' +
-                                '<ionic-ratings ratingsobj="{rating: ' + shop.Rating + ', readOnly: ' + true + ' }" style="float: right"></ionic-ratings>' +
-                                '</div>' +
-                                '<div id="webLink" style="float:left">' +
-                                '<p><a href="#" onclick="openBrowser(google.com);">' + shop.Web + '</a> ' +
-                                '<button id="requestBtn" class="button button-calm" ng-click="openModal(\'' + shop.Name + '\',\'' + shop.Email + '\')">Request</button>' +
-                                '<button id="requestBtn" class="button button-calm" ng-click="navigate(\'' + markerPos + '\')">Navigate</button>' +
-                                '</div>';
+                        var infoWindowContent = '<div id="content">' +
+                            '<div style="float:left; width:5%; padding-right:2cm"><img src="app/img/surf.png" width="60" height="40"/></div>' +
+                            '<div style="float:right">' +
+                            '<h5>' + shop.Name + '</h5>' +
+                            '<div>' +
+                            '<h6>' + shop.Numb + '</h6>' +
+                            '<h6>' + shop.Address + '</h6>' +
+                            '<ionic-ratings ratingsobj="{rating: ' + shop.Rating + ', readOnly: ' + true + ' }" style="float: right"></ionic-ratings>' +
+                            '</div>' +
+                            '<div id="webLink" style="float:left">' +
+                            '<p><a href="#" onclick="openBrowser(google.com);">' + shop.Web + '</a> ' +
+                            '<button id="requestBtn" class="button button-calm" ng-click="openModal()">Request</button>' +
+                            '<button id="requestBtn" class="button button-calm" ng-click="navigate(\'' + markerPos + '\')">Navigate</button>' +
+                            '</div>';
 
-                            var compiled = $compile(infoWindowContent)($scope);
-                            var infoWindow = new google.maps.InfoWindow({
-                                content: compiled[0]
-                            });
+                        var compiled = $compile(infoWindowContent)($scope);
+                        var infoWindow = new google.maps.InfoWindow({
+                            content: compiled[0]
+                        });
 
-                            addInfoWindow(marker, compiled[0], shop);
-                        }
+                        addInfoWindow(marker, compiled[0], shop);
                         //Sum of average LatLng (need to get average of shops near user)
                         var latSum = 0;
                         var lngSum = 0;

@@ -23,54 +23,38 @@
             $scope.requests = [];
 
             var query = new Parse.Query("Request");
-            var query2 = new Parse.Query('Shop');
             query.each(function(request) {
                 var req = request;
-                var user = request.get('User');
                 var shop = request.get('Shop');
-                query2.get(shop.id, {
-                    success: function(object) {
-                        if (user.id == $scope.currentUser.id) {
-                            var newShop = object;
-                            var shopName = newShop.get('ShopName');
-                            var address = newShop.get('Address');
-                            var phone = newShop.get('PhoneNumber');
-                            var hours = newShop.get('Hours');
-                            var completed = req.get('Completed');
-                            var quantity = req.get('Quantity');
-                            var gear = req.get('Gear');
-                            var date = req.get('createdAt');
-                            var prettyDate = moment(date).format('dddd, MMMM Do YYYY');
-                            var prettyTime = moment(date).format('h:mm a');
+                var shopName = shop.get('ShopName');
+                var address = shop.get('Address');
+                var phone = shop.get('PhoneNumber');
+                var hours = shop.get('Hours');
+                var completed = req.get('Completed');
+                var gear = req.get('Gear');
+                var date = req.get('createdAt');
+                var prettyDate = moment(date).format('dddd, MMMM Do YYYY');
+                var prettyTime = moment(date).format('h:mm a');
 
 
-                            var request = {
-                                "ShopName": shopName,
-                                "Address": address,
-                                "Phone": phone,
-                                "Hours": hours,
-                                "Completed": completed,
-                                "Quantity": quantity,
-                                "Gear": gear,
-                                "Date": prettyDate,
-                                "Time": prettyTime,
-                                "Created": date
-                            };
+                var request = {
+                    "ShopName": shopName,
+                    "Address": address,
+                    "Phone": phone,
+                    "Hours": hours,
+                    "Completed": completed,
+                    "Gear": gear,
+                    "Date": prettyDate,
+                    "Time": prettyTime,
+                    "Created": date
+                };
 
 
-                            $scope.$apply(function() {
-                                $scope.requests.push(request);
-                            });
-                            console.log($scope.requests);
-                        } else {
-                            console.log("attempting to find request");
-                        }
-                    },
-
-                    error: function(object, error) {
-                        console.log(error);
-                    }
+                $scope.$apply(function() {
+                    $scope.requests.push(request);
                 });
+                console.log($scope.requests);
+
 
 
                 $ionicLoading.hide();
@@ -109,7 +93,7 @@
                 clearcache: 'yes',
                 toolbar: 'no'
             };
-            $cordovaInAppBrowser.open(url,'_blank', options)
+            $cordovaInAppBrowser.open(url, '_blank', options)
 
             .then(function(event) {
                 // success
